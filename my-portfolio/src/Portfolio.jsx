@@ -174,14 +174,15 @@ const Portfolio = () => {
                 </a>
               </div>
 
-              <div className="social-links">
-                <a href="https://github.com/kurarenzu007" className="social-link">
-                  <Github size={24} />
-                </a>
-                <a href="https://linkedin.com/in/clarence-felicilda-13667728a" target="_blank" rel="noreferrer">
-                  <Linkedin size={24} />
-                </a>
-              </div>
+            <div className="social-links">
+  <a href="https://github.com/kurarenzu007" className="social-link">
+    <Github size={24} />
+  </a>
+  {/* Added className="social-link" below */}
+  <a href="https://linkedin.com/in/clarence-felicilda-13667728a" target="_blank" rel="noreferrer" className="social-link">
+    <Linkedin size={24} />
+  </a>
+</div>
             </div>
           </div>
         </div>
