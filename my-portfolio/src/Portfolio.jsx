@@ -6,6 +6,7 @@ const Portfolio = () => {
   const [isDark, setIsDark] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isVisible, setIsVisible] = useState({});
+  const [currentSkillIndex, setCurrentSkillIndex] = useState(0);
   const heroRef = useRef(null);
 
   useEffect(() => {
@@ -83,8 +84,26 @@ const Portfolio = () => {
       icon: <PenTool size={24} />, 
       items: ["Figma", "Adobe Photoshop", "Technical Documentation"],
       color: "linear-gradient(to bottom right, #fb923c, #ef4444)"
+    },
+    { 
+      name: "Vibe Coding", 
+      icon: <Sparkles size={24} />, 
+      items: ["Flow State Programming", "Intuitive Debugging", "Clean Architecture", "Rhythmic Refactoring"],
+      color: "linear-gradient(to bottom right, #8b5cf6, #ec4899)"
     }
   ];
+
+  const nextSkill = () => {
+    setCurrentSkillIndex((prev) => (prev + 4) % skills.length);
+  };
+
+  const prevSkill = () => {
+    setCurrentSkillIndex((prev) => (prev - 4 + skills.length) % skills.length);
+  };
+
+  const goToSkill = (index) => {
+    setCurrentSkillIndex(index);
+  };
 
   return (
     <div className={`portfolio ${isDark ? 'dark' : 'light'}`}>
@@ -205,28 +224,55 @@ const Portfolio = () => {
             </p>
           </div>
 
-          <div className="skills-grid">
-            {skills.map((skill, i) => (
-              <div
-                key={i}
-                className={`skill-card fade-in-section ${isVisible['skills-header'] ? 'visible' : ''}`}
-                style={{ transitionDelay: `${i * 150}ms` }}
-                id={`skill-${i}`}
-              >
-                <div className="skill-icon" style={{ background: skill.color }}>
-                  {skill.icon}
-                </div>
-                <h3 className="skill-name">{skill.name}</h3>
-                <ul className="skill-items">
-                  {skill.items.map((item, j) => (
-                    <li key={j} className="skill-item">
-                      <span className="skill-bullet" style={{ background: skill.color }}></span>
-                      {item}
-                    </li>
+          <div className="skills-carousel">
+            <div className="carousel-container">
+              <button onClick={prevSkill} className="carousel-btn carousel-btn-prev">
+                <ArrowRight size={20} style={{ transform: 'rotate(180deg)' }} />
+              </button>
+              
+              <div className="carousel-track">
+                <div className="skills-grid-carousel">
+                  {skills.map((skill, i) => (
+                    <div
+                      key={i}
+                      className={`skill-card fade-in-section ${isVisible['skills-header'] ? 'visible' : ''} ${i >= currentSkillIndex && i < currentSkillIndex + 4 ? 'active' : ''}`}
+                      style={{ 
+                        opacity: i >= currentSkillIndex && i < currentSkillIndex + 4 ? 1 : 0,
+                        transform: i >= currentSkillIndex && i < currentSkillIndex + 4 ? 'scale(1)' : 'scale(0.8)',
+                        transition: 'all 0.5s ease-in-out'
+                      }}
+                    >
+                      <div className="skill-icon" style={{ background: skill.color }}>
+                        {skill.icon}
+                      </div>
+                      <h3 className="skill-name">{skill.name}</h3>
+                      <ul className="skill-items">
+                        {skill.items.map((item, j) => (
+                          <li key={j} className="skill-item">
+                            <span className="skill-bullet" style={{ background: skill.color }}></span>
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   ))}
-                </ul>
+                </div>
               </div>
-            ))}
+              
+              <button onClick={nextSkill} className="carousel-btn carousel-btn-next">
+                <ArrowRight size={20} />
+              </button>
+            </div>
+            
+            <div className="carousel-dots">
+              {Array.from({ length: Math.ceil(skills.length / 4) }, (_, i) => (
+                <button
+                  key={i}
+                  onClick={() => goToSkill(i * 4)}
+                  className={`carousel-dot ${Math.floor(currentSkillIndex / 4) === i ? 'active' : ''}`}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </section>
