@@ -1,5 +1,11 @@
 {
+  "homepage": "https://kurarenzu007.github.io/my-portfolio",
+  
   "dependencies": {
     "lucide-react": "^0.562.0"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
   }
 }
+
