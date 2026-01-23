@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Code2, Server, Database, PenTool, Mail, Github, Linkedin, ExternalLink, ArrowRight, Sparkles, Download } from 'lucide-react';
-import profileImg from './assets/clarence_f.jpg';
-import './App.css';
+import imgProfile from './assets/clarence_f.jpg'
 const Portfolio = () => {
   const [isDark, setIsDark] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -94,16 +93,26 @@ const Portfolio = () => {
   ];
 
   const nextSkill = () => {
-    setCurrentSkillIndex((prev) => (prev + 4) % skills.length);
+    setCurrentSkillIndex((prev) => {
+      const next = prev + 4;
+      return next >= skills.length ? 0 : next;
+    });
   };
 
   const prevSkill = () => {
-    setCurrentSkillIndex((prev) => (prev - 4 + skills.length) % skills.length);
+    setCurrentSkillIndex((prev) => {
+      const previous = prev - 4;
+      return previous < 0 ? Math.max(0, skills.length - 4) : previous;
+    });
   };
 
   const goToSkill = (index) => {
     setCurrentSkillIndex(index);
   };
+
+  const displayedSkills = skills.slice(currentSkillIndex, currentSkillIndex + 4);
+  const totalPages = Math.ceil(skills.length / 4);
+  const currentPage = Math.floor(currentSkillIndex / 4);
 
   return (
     <div className={`portfolio ${isDark ? 'dark' : 'light'}`}>
@@ -137,23 +146,22 @@ const Portfolio = () => {
         <div className="container">
           <div className="hero-grid">
             {/* Image Side */}
-     
-<div className="hero-image-container">
-  <div className="profile-wrapper">
-    <div className="profile-glow"></div>
-    <div className="profile-border">
-      <img 
-        src={profileImg} 
-        alt="Clarence F. Felicilda" 
-        className="profile-image" 
-      />
-    </div>
-    <div className="availability-badge">
-      <Sparkles size={20} />
-      Available
-    </div>
-  </div>
-</div>
+            <div className="hero-image-container">
+              <div className="profile-wrapper">
+                <div className="profile-glow"></div>
+                <div className="profile-border">
+                  <img 
+                    src={imgProfile} 
+                    alt="Clarence F. Felicilda" 
+                    className="profile-image" 
+                  />
+                </div>
+                <div className="availability-badge">
+                  <Sparkles size={20} />
+                  Available
+                </div>
+              </div>
+            </div>
 
             {/* Content Side */}
             <div className="hero-content">
@@ -187,21 +195,20 @@ const Portfolio = () => {
                   <Mail size={20} />
                   Get In Touch
                 </a>
-                <a href="/TechnicalResume.pdf" download="Clarence_Felicilda_Resume.pdf" className="btn btn-resume">
+                <a href="./TechnicalResume.pdf" download="Clarence_Felicilda_Resume.pdf" target="_blank" className="btn btn-resume">
                   <Download size={20} />
                   Download Resume
                 </a>
               </div>
 
-            <div className="social-links">
-  <a href="https://github.com/kurarenzu007" className="social-link">
-    <Github size={24} />
-  </a>
-  {/* Added className="social-link" below */}
-  <a href="https://linkedin.com/in/clarence-felicilda-13667728a" target="_blank" rel="noreferrer" className="social-link">
-    <Linkedin size={24} />
-  </a>
-</div>
+              <div className="social-links">
+                <a href="https://github.com/kurarenzu007" className="social-link" target="_blank" rel="noreferrer">
+                  <Github size={24} />
+                </a>
+                <a href="https://linkedin.com/in/clarence-felicilda-13667728a" target="_blank" rel="noreferrer" className="social-link">
+                  <Linkedin size={24} />
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -226,20 +233,19 @@ const Portfolio = () => {
 
           <div className="skills-carousel">
             <div className="carousel-container">
-              <button onClick={prevSkill} className="carousel-btn carousel-btn-prev">
+              <button onClick={prevSkill} className="carousel-btn carousel-btn-prev" disabled={currentSkillIndex === 0}>
                 <ArrowRight size={20} style={{ transform: 'rotate(180deg)' }} />
               </button>
               
               <div className="carousel-track">
                 <div className="skills-grid-carousel">
-                  {skills.map((skill, i) => (
+                  {displayedSkills.map((skill, i) => (
                     <div
-                      key={i}
-                      className={`skill-card fade-in-section ${isVisible['skills-header'] ? 'visible' : ''} ${i >= currentSkillIndex && i < currentSkillIndex + 4 ? 'active' : ''}`}
+                      key={`${currentSkillIndex}-${i}`}
+                      className="skill-card"
                       style={{ 
-                        opacity: i >= currentSkillIndex && i < currentSkillIndex + 4 ? 1 : 0,
-                        transform: i >= currentSkillIndex && i < currentSkillIndex + 4 ? 'scale(1)' : 'scale(0.8)',
-                        transition: 'all 0.5s ease-in-out'
+                        animation: 'fadeInScale 0.5s ease-out forwards',
+                        animationDelay: `${i * 100}ms`
                       }}
                     >
                       <div className="skill-icon" style={{ background: skill.color }}>
@@ -259,17 +265,17 @@ const Portfolio = () => {
                 </div>
               </div>
               
-              <button onClick={nextSkill} className="carousel-btn carousel-btn-next">
+              <button onClick={nextSkill} className="carousel-btn carousel-btn-next" disabled={currentSkillIndex + 4 >= skills.length}>
                 <ArrowRight size={20} />
               </button>
             </div>
             
             <div className="carousel-dots">
-              {Array.from({ length: Math.ceil(skills.length / 4) }, (_, i) => (
+              {Array.from({ length: totalPages }, (_, i) => (
                 <button
                   key={i}
                   onClick={() => goToSkill(i * 4)}
-                  className={`carousel-dot ${Math.floor(currentSkillIndex / 4) === i ? 'active' : ''}`}
+                  className={`carousel-dot ${currentPage === i ? 'active' : ''}`}
                 />
               ))}
             </div>
@@ -283,7 +289,7 @@ const Portfolio = () => {
           <div className="section-header fade-in-section" id="projects-header">
             <h2 className="section-title">Featured Projects</h2>
             <p className="section-subtitle">
-              Real-world applications showcasing my problem-solving abilities
+              Showcasing real-world applications and academic achievements
             </p>
           </div>
 
@@ -343,7 +349,6 @@ const Portfolio = () => {
                             {project.role}
                           </span>
                         </div>
-                        <ExternalLink size={20} className="project-link-icon" />
                       </div>
 
                       <p className="project-description">{project.desc}</p>
@@ -372,8 +377,6 @@ const Portfolio = () => {
           </p>
         </div>
       </footer>
-
-
     </div>
   );
 };
