@@ -1,6 +1,6 @@
 {
-  "homepage": "https://kurarenzu007.github.io/my-portfolio",
-  
+ 
+
   "dependencies": {
     "lucide-react": "^0.562.0"
   },

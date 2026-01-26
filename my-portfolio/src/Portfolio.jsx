@@ -42,6 +42,14 @@ const Portfolio = () => {
 
   const projects = [
     {
+      title: "Animal Adoption Platform(Frontend)",
+      role: "Personal Project",
+      tech: ["React", "Vite", "Bootstrap"],
+      desc: "A compassionate, responsive web platform designed to connect shelter animals with forever homes. Features a modern, mobile-first UI with engaging storytelling elements and smooth animations.",
+      gradient: "linear-gradient(to right, #10b981, #0ea5e9)", 
+      link: "https://kurarenzu007.github.io/AnimalAdoption/"
+    },
+    {
       title: "Auto Parts Inventory System",
       role: "Thesis Project",
       tech: ["React", "Node.js", "MySQL"],
@@ -52,7 +60,7 @@ const Portfolio = () => {
     {
       title: "Clinic Appointment System",
       role: "Academic Project",
-      tech: ["HTML", "CSS", "MySQL"],
+      tech: ["React", "Node", "Express", "MySQL"],
       desc: "Streamlined patient scheduling platform that digitized manual processes, reducing appointment conflicts by 80% and improving clinic workflow efficiency.",
       gradient: "linear-gradient(to right, #a855f7, #ec4899)",
       link: null
