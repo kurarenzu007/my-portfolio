@@ -63,7 +63,7 @@ const Portfolio = () => {
       tech: ["React", "Node", "Express", "MySQL"],
       desc: "Streamlined patient scheduling platform that digitized manual processes, reducing appointment conflicts by 80% and improving clinic workflow efficiency.",
       gradient: "linear-gradient(to right, #a855f7, #ec4899)",
-      link: null
+      link: "https://github.com/kurarenzu007/clinic-appointment"
     }
   ];
 
@@ -77,7 +77,7 @@ const Portfolio = () => {
     { 
       name: "Frameworks", 
       icon: <Server size={24} />, 
-      items: ["React", "Node.js", "Express"],
+      items: ["React", "Node.js"],
       color: "linear-gradient(to bottom right, #c084fc, #f472b6)"
     },
     { 
