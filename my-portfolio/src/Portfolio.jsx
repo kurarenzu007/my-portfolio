@@ -83,7 +83,7 @@ const Portfolio = () => {
       tech: ['React', 'Node.js', 'MySQL'],
       desc: 'Full-stack inventory management system with real-time stock tracking, low-stock alerts, and transaction history. Implemented JWT authentication and role-based access control for admin and staff roles.',
       gradient: 'linear-gradient(to right, #3b82f6, #06b6d4)',
-      link: 'https://tjc-autosupply.vercel.app/',
+      link: 'https://tjcsims.com',
       github: null,
     },
     {
