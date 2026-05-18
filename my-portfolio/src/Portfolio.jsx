@@ -188,8 +188,8 @@ const Portfolio = () => {
       {/* About */}
       <section id="about" className="about-section">
         <div className="container">
-          <div className="fade-in-section" id="about-header">
-            <div className={`about-card ${isVisible['about-header'] ? 'visible' : ''}`}>
+          <div className={`fade-in-section ${isVisible['about-header'] ? 'visible' : ''}`} id="about-header">
+            <div className="about-card">
               <h2 className="section-title">About Me</h2>
               <p className="about-text">
                 I'm a 4th year Bachelor of Science in Information Technology student at Cavite State University, specializing in full-stack web development. I've built projects ranging from inventory systems to patient scheduling platforms, working across the full stack with React, Node.js, and MySQL.
@@ -223,7 +223,7 @@ const Portfolio = () => {
             <h2 className={`section-title ${isVisible['skills-header'] ? 'visible' : ''}`}>Skills</h2>
             <p className="section-subtitle">Technologies I work with</p>
           </div>
-          <div className={`skills-grid fade-in-section ${isVisible['skills-header'] ? 'visible' : ''}`} id="skills-grid">
+          <div className={`skills-grid fade-in-section ${isVisible['skills-grid'] ? 'visible' : ''}`} id="skills-grid">
             {skillCategories.map(cat => (
               <div key={cat.key} className="skill-category-card">
                 <div className="skill-cat-header">
@@ -297,8 +297,8 @@ const Portfolio = () => {
       {/* Contact */}
       <section id="contact" className="contact-section">
         <div className="container">
-          <div className="fade-in-section" id="contact-header">
-            <div className={`contact-card ${isVisible['contact-header'] ? 'visible' : ''}`}>
+          <div className={`fade-in-section ${isVisible['contact-header'] ? 'visible' : ''}`} id="contact-header">
+            <div className="contact-card">
               <h2 className="section-title">Let's Work Together</h2>
               <p className="contact-subtitle">
                 I'm currently open to internship and entry-level opportunities. If you have a role or project in mind, feel free to reach out.

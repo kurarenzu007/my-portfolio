@@ -184,7 +184,7 @@ body {
   min-height: 100vh;
   display: flex;
   align-items: center;
-  padding: 96px 24px 48px;
+  padding: 96px 24px 32px;
   position: relative;
 }
 
@@ -375,18 +375,13 @@ body {
 .dark  .scroll-dot { background: #475569; }
 
 /* ── About ── */
-.about-section { padding: 96px 24px; }
+.about-section { padding: 64px 24px; }
 
 .about-card {
   border-radius: 20px;
   padding: 48px;
   border: 1px solid;
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
 }
-
-.about-card.visible { opacity: 1; transform: translateY(0); }
 
 .light .about-card { background: rgba(255,255,255,0.8); border-color: #e2e8f0; }
 .dark  .about-card { background: rgba(15,23,42,0.6); border-color: #1e293b; }
@@ -426,7 +421,7 @@ body {
 .dark  .stat-label { color: #94a3b8; }
 
 /* ── Skills ── */
-.skills-section { padding: 96px 24px; }
+.skills-section { padding: 64px 24px; }
 
 .section-header {
   text-align: center;
@@ -516,7 +511,7 @@ body {
 .dark  .skill-tag { background: #1e293b; color: #cbd5e1; }
 
 /* ── Projects ── */
-.projects-section { padding: 96px 24px; }
+.projects-section { padding: 64px 24px; }
 
 .projects-grid {
   display: grid;
@@ -605,19 +600,14 @@ body {
 .dark  .tech-tag { background: #1e293b; color: #cbd5e1; }
 
 /* ── Contact ── */
-.contact-section { padding: 96px 24px; }
+.contact-section { padding: 64px 24px; }
 
 .contact-card {
   border-radius: 20px;
   padding: 56px 48px;
   text-align: center;
   border: 1px solid;
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
 }
-
-.contact-card.visible { opacity: 1; transform: translateY(0); }
 
 .light .contact-card { background: rgba(255,255,255,0.8); border-color: #e2e8f0; }
 .dark  .contact-card { background: rgba(15,23,42,0.6); border-color: #1e293b; }
@@ -683,6 +673,7 @@ body {
   opacity: 0;
   transform: translateY(24px);
   transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  will-change: opacity, transform;
 }
 
 .fade-in-section.visible {
