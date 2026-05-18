@@ -87,6 +87,15 @@ const Portfolio = () => {
       github: null,
     },
     {
+      title: 'Apartment Management System',
+      role: 'Personal Project',
+      tech: ['React', 'Vite', 'React Router', 'jsPDF'],
+      desc: 'Full-featured property management app with tenant registration, unit tracking, rent collection, maintenance requests, and complaint handling. Includes a role-based login system for admin and tenants, plus PDF report generation.',
+      gradient: 'linear-gradient(to right, #f59e0b, #ef4444)',
+      link: 'https://github.com/kurarenzu007/jjj-apartment',
+      github: 'https://github.com/kurarenzu007/jjj-apartment',
+    },
+    {
       title: 'Clinic Appointment System',
       role: 'Academic Project',
       tech: ['React', 'Node.js', 'Express', 'MySQL'],
