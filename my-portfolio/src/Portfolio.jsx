@@ -1,29 +1,26 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Code2, Server, Database, PenTool, Mail, Github, Linkedin, ExternalLink, ArrowRight, Sparkles, Download } from 'lucide-react';
-import imgProfile from './assets/clarence_f.jpg'
+import { Code2, Server, Database, PenTool, Mail, Github, Linkedin, ExternalLink, ArrowRight, Sparkles, Download, Menu, X } from 'lucide-react';
+import imgProfile from './assets/clarence_f.jpg';
+
 const Portfolio = () => {
   const [isDark, setIsDark] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isVisible, setIsVisible] = useState({});
-  const [currentSkillIndex, setCurrentSkillIndex] = useState(0);
-  const heroRef = useRef(null);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
   }, [isDark]);
 
   useEffect(() => {
-    const handleMouseMove = (e) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   useEffect(() => {
     const observers = [];
     const elements = document.querySelectorAll('.fade-in-section');
-    
     elements.forEach((el) => {
       const observer = new IntersectionObserver(
         ([entry]) => {
@@ -36,343 +33,285 @@ const Portfolio = () => {
       observer.observe(el);
       observers.push(observer);
     });
-
-    return () => observers.forEach(observer => observer.disconnect());
+    return () => observers.forEach(o => o.disconnect());
   }, []);
 
-  const projects = [
-    {
-      title: "Animal Adoption Platform(Frontend)",
-      role: "Personal Project",
-      tech: ["React", "Vite", "Bootstrap"],
-      desc: "A compassionate, responsive web platform designed to connect shelter animals with forever homes. Features a modern, mobile-first UI with engaging storytelling elements and smooth animations.",
-      gradient: "linear-gradient(to right, #10b981, #0ea5e9)", 
-      link: "https://kurarenzu007.github.io/AnimalAdoption/"
-    },
-    {
-      title: "Auto Parts Inventory System",
-      role: "Thesis Project",
-      tech: ["React", "Node.js", "MySQL"],
-      desc: "Full-stack inventory management platform with real-time stock tracking, automated alerts, and comprehensive transaction history. Implemented secure authentication and role-based access control.",
-      gradient: "linear-gradient(to right, #3b82f6, #06b6d4)",
-      link: "https://tjc-autosupply.vercel.app/"
-    },
-    {
-      title: "Clinic Appointment System",
-      role: "Academic Project",
-      tech: ["React", "Node", "Express", "MySQL"],
-      desc: "Streamlined patient scheduling platform that digitized manual processes, reducing appointment conflicts by 80% and improving clinic workflow efficiency.",
-      gradient: "linear-gradient(to right, #a855f7, #ec4899)",
-      link: "https://github.com/kurarenzu007/clinic-appointment"
-    }
+  const navLinks = [
+    { label: 'About', href: '#about' },
+    { label: 'Skills', href: '#skills' },
+    { label: 'Projects', href: '#projects' },
+    { label: 'Contact', href: '#contact' },
   ];
 
   const skills = [
-    { 
-      name: "Web & Programming", 
-      icon: <Code2 size={24} />, 
-      items: ["JavaScript", "Java", "PHP", "HTML/CSS"],
-      color: "linear-gradient(to bottom right, #60a5fa, #22d3ee)"
-    },
-    { 
-      name: "Frameworks", 
-      icon: <Server size={24} />, 
-      items: ["React", "Node.js"],
-      color: "linear-gradient(to bottom right, #c084fc, #f472b6)"
-    },
-    { 
-      name: "Databases", 
-      icon: <Database size={24} />, 
-      items: ["MySQL"],
-      color: "linear-gradient(to bottom right, #4ade80, #10b981)"
-    },
-    { 
-      name: "Design & Other", 
-      icon: <PenTool size={24} />, 
-      items: ["Figma", "Adobe Photoshop", "Technical Documentation"],
-      color: "linear-gradient(to bottom right, #fb923c, #ef4444)"
-    },
-    { 
-      name: "Vibe Coding", 
-      icon: <Sparkles size={24} />, 
-      items: ["Flow State Programming", "Intuitive Debugging", "Clean Architecture", "Rhythmic Refactoring"],
-      color: "linear-gradient(to bottom right, #8b5cf6, #ec4899)"
-    }
+    { label: 'JavaScript', category: 'lang' },
+    { label: 'Java', category: 'lang' },
+    { label: 'PHP', category: 'lang' },
+    { label: 'HTML/CSS', category: 'lang' },
+    { label: 'React', category: 'framework' },
+    { label: 'Node.js', category: 'framework' },
+    { label: 'Express', category: 'framework' },
+    { label: 'Vite', category: 'framework' },
+    { label: 'Bootstrap', category: 'framework' },
+    { label: 'MySQL', category: 'db' },
+    { label: 'Figma', category: 'tool' },
+    { label: 'Adobe Photoshop', category: 'tool' },
+    { label: 'Git', category: 'tool' },
+    { label: 'Technical Documentation', category: 'tool' },
   ];
 
-  const nextSkill = () => {
-    setCurrentSkillIndex((prev) => {
-      const next = prev + 4;
-      return next >= skills.length ? 0 : next;
-    });
-  };
+  const skillCategories = [
+    { key: 'lang', label: 'Languages', icon: <Code2 size={18} />, color: 'linear-gradient(135deg, #60a5fa, #22d3ee)' },
+    { key: 'framework', label: 'Frameworks & Libraries', icon: <Server size={18} />, color: 'linear-gradient(135deg, #c084fc, #f472b6)' },
+    { key: 'db', label: 'Databases', icon: <Database size={18} />, color: 'linear-gradient(135deg, #4ade80, #10b981)' },
+    { key: 'tool', label: 'Tools & Other', icon: <PenTool size={18} />, color: 'linear-gradient(135deg, #fb923c, #ef4444)' },
+  ];
 
-  const prevSkill = () => {
-    setCurrentSkillIndex((prev) => {
-      const previous = prev - 4;
-      return previous < 0 ? Math.max(0, skills.length - 4) : previous;
-    });
-  };
-
-  const goToSkill = (index) => {
-    setCurrentSkillIndex(index);
-  };
-
-  const displayedSkills = skills.slice(currentSkillIndex, currentSkillIndex + 4);
-  const totalPages = Math.ceil(skills.length / 4);
-  const currentPage = Math.floor(currentSkillIndex / 4);
+  const projects = [
+    {
+      title: 'Animal Adoption Platform',
+      role: 'Personal Project',
+      tech: ['React', 'Vite', 'Bootstrap'],
+      desc: 'A responsive web platform connecting shelter animals with potential adopters. Built a mobile-first UI with filtering, animal profiles, and smooth page transitions.',
+      gradient: 'linear-gradient(to right, #10b981, #0ea5e9)',
+      link: 'https://kurarenzu007.github.io/AnimalAdoption/',
+      github: null,
+    },
+    {
+      title: 'Auto Parts Inventory System',
+      role: 'Thesis Project',
+      tech: ['React', 'Node.js', 'MySQL'],
+      desc: 'Full-stack inventory management system with real-time stock tracking, low-stock alerts, and transaction history. Implemented JWT authentication and role-based access control for admin and staff roles.',
+      gradient: 'linear-gradient(to right, #3b82f6, #06b6d4)',
+      link: 'https://tjc-autosupply.vercel.app/',
+      github: null,
+    },
+    {
+      title: 'Clinic Appointment System',
+      role: 'Academic Project',
+      tech: ['React', 'Node.js', 'Express', 'MySQL'],
+      desc: 'Patient scheduling system that replaced a manual paper-based process. Supports appointment booking, doctor availability management, and patient records — reducing scheduling conflicts significantly.',
+      gradient: 'linear-gradient(to right, #a855f7, #ec4899)',
+      link: 'https://github.com/kurarenzu007/clinic-appointment',
+      github: 'https://github.com/kurarenzu007/clinic-appointment',
+    },
+  ];
 
   return (
     <div className={`portfolio ${isDark ? 'dark' : 'light'}`}>
-      {/* Animated Background Gradient Orbs */}
-      <div className="bg-orbs">
-        <div 
-          className="orb orb-1"
-          style={{
-            background: isDark ? 'linear-gradient(to right, #3b82f6, #8b5cf6)' : 'linear-gradient(to right, #60a5fa, #a78bfa)',
-            left: `${mousePosition.x / 20}px`,
-            top: `${mousePosition.y / 20}px`,
-          }}
-        />
-        <div 
-          className="orb orb-2"
-          style={{
-            background: isDark ? 'linear-gradient(to left, #ec4899, #f59e0b)' : 'linear-gradient(to left, #f472b6, #fbbf24)',
-            right: `${mousePosition.x / 30}px`,
-            bottom: `${mousePosition.y / 30}px`,
-          }}
-        />
-      </div>
 
-      {/* Theme Toggle */}
-      <button onClick={() => setIsDark(!isDark)} className="theme-toggle">
-        {isDark ? '☀️' : '🌙'}
-      </button>
+      {/* Nav */}
+      <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
+        <div className="nav-inner">
+          <a href="#" className="nav-logo">CF.</a>
+          <div className="nav-links-desktop">
+            {navLinks.map(l => (
+              <a key={l.label} href={l.href} className="nav-link">{l.label}</a>
+            ))}
+            <a href="./TechnicalResume.pdf" download="Clarence_Felicilda_Resume.pdf" className="btn btn-primary btn-sm">
+              <Download size={16} /> Resume
+            </a>
+            <button onClick={() => setIsDark(!isDark)} className="theme-toggle-inline">
+              {isDark ? '☀️' : '🌙'}
+            </button>
+          </div>
+          <div className="nav-mobile-right">
+            <button onClick={() => setIsDark(!isDark)} className="theme-toggle-inline">
+              {isDark ? '☀️' : '🌙'}
+            </button>
+            <button className="menu-btn" onClick={() => setMenuOpen(!menuOpen)}>
+              {menuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+        </div>
+        {menuOpen && (
+          <div className="nav-mobile-menu">
+            {navLinks.map(l => (
+              <a key={l.label} href={l.href} className="nav-link-mobile" onClick={() => setMenuOpen(false)}>{l.label}</a>
+            ))}
+            <a href="./TechnicalResume.pdf" download="Clarence_Felicilda_Resume.pdf" className="nav-link-mobile">Download Resume</a>
+          </div>
+        )}
+      </nav>
 
-      {/* Hero Section */}
-      <section ref={heroRef} className="hero-section">
+      {/* Hero */}
+      <section className="hero-section">
         <div className="container">
           <div className="hero-grid">
-            {/* Image Side */}
             <div className="hero-image-container">
               <div className="profile-wrapper">
                 <div className="profile-glow"></div>
                 <div className="profile-border">
-                  <img 
-                    src={imgProfile} 
-                    alt="Clarence F. Felicilda" 
-                    className="profile-image" 
-                  />
+                  <img src={imgProfile} alt="Clarence F. Felicilda" className="profile-image" />
                 </div>
                 <div className="availability-badge">
-                  <Sparkles size={20} />
-                  Available
+                  <Sparkles size={16} /> Open to Work
                 </div>
               </div>
             </div>
-
-            {/* Content Side */}
             <div className="hero-content">
-              <div className="hero-intro">
-                <div className="intro-label">
-                  <span className="intro-line"></span>
-                  HELLO, I'M
-                </div>
-                <h1 className="hero-title">
-                  Clarence F.
-                  <br />
-                  <span className="gradient-text">Felicilda</span>
-                </h1>
+              <div className="intro-label">
+                <span className="intro-line"></span> HELLO, I'M
               </div>
-              
-              <p className="hero-subtitle">
-                4th Year BSIT Student | Cavite State University
-              </p>
-              
+              <h1 className="hero-title">
+                Clarence F.<br />
+                <span className="gradient-text">Felicilda</span>
+              </h1>
+              <p className="hero-subtitle">Full-Stack Developer · 4th Year BSIT · Cavite State University</p>
               <p className="hero-description">
-                Aspiring full-stack developer passionate about crafting elegant solutions to complex problems. 
-                I transform ideas into efficient, scalable software that makes a difference.
+                I build web applications end-to-end — from database design to UI. Currently finishing my degree and actively looking for opportunities where I can contribute and keep growing as a developer.
               </p>
-
               <div className="hero-buttons">
                 <a href="#projects" className="btn btn-primary">
-                  Explore Work
-                  <ArrowRight size={20} className="btn-icon" />
+                  View Projects <ArrowRight size={18} className="btn-icon" />
                 </a>
-                <a href="mailto:clarence.felicilda007@gmail.com" className="btn btn-secondary">
-                  <Mail size={20} />
-                  Get In Touch
-                </a>
-                <a href="./TechnicalResume.pdf" download="Clarence_Felicilda_Resume.pdf" target="_blank" className="btn btn-resume">
-                  <Download size={20} />
-                  Download Resume
+                <a href="#contact" className="btn btn-secondary">
+                  <Mail size={18} /> Contact Me
                 </a>
               </div>
-
               <div className="social-links">
-                <a href="https://github.com/kurarenzu007" className="social-link" target="_blank" rel="noreferrer">
-                  <Github size={24} />
+                <a href="https://github.com/kurarenzu007" className="social-link" target="_blank" rel="noreferrer" aria-label="GitHub">
+                  <Github size={22} />
                 </a>
-                <a href="https://linkedin.com/in/clarence-felicilda-13667728a" target="_blank" rel="noreferrer" className="social-link">
-                  <Linkedin size={24} />
+                <a href="https://linkedin.com/in/clarence-felicilda-13667728a" className="social-link" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+                  <Linkedin size={22} />
                 </a>
               </div>
             </div>
           </div>
         </div>
+        <div className="scroll-indicator" aria-hidden="true">
+          <div className="scroll-border"><div className="scroll-dot"></div></div>
+        </div>
+      </section>
 
-        {/* Scroll Indicator */}
-        <div className="scroll-indicator">
-          <div className="scroll-border">
-            <div className="scroll-dot"></div>
+      {/* About */}
+      <section id="about" className="about-section">
+        <div className="container">
+          <div className="fade-in-section" id="about-header">
+            <div className={`about-card ${isVisible['about-header'] ? 'visible' : ''}`}>
+              <h2 className="section-title">About Me</h2>
+              <p className="about-text">
+                I'm a 4th year Bachelor of Science in Information Technology student at Cavite State University, specializing in full-stack web development. I've built projects ranging from inventory systems to patient scheduling platforms, working across the full stack with React, Node.js, and MySQL.
+              </p>
+              <p className="about-text">
+                I'm comfortable taking a feature from database schema to deployed UI. I'm looking for an entry-level or internship role where I can work on real products, write clean code, and learn from experienced engineers.
+              </p>
+              <div className="about-stats">
+                <div className="stat">
+                  <span className="stat-number gradient-text">3+</span>
+                  <span className="stat-label">Projects Shipped</span>
+                </div>
+                <div className="stat">
+                  <span className="stat-number gradient-text">4th</span>
+                  <span className="stat-label">Year BSIT</span>
+                </div>
+                <div className="stat">
+                  <span className="stat-number gradient-text">Full</span>
+                  <span className="stat-label">Stack Focus</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Skills Section */}
+      {/* Skills */}
       <section id="skills" className="skills-section">
         <div className="container">
           <div className="section-header fade-in-section" id="skills-header">
-            <h2 className="section-title">Technical Arsenal</h2>
-            <p className="section-subtitle">
-              Tools and technologies I use to bring ideas to life
-            </p>
+            <h2 className={`section-title ${isVisible['skills-header'] ? 'visible' : ''}`}>Skills</h2>
+            <p className="section-subtitle">Technologies I work with</p>
           </div>
-
-          <div className="skills-carousel">
-            <div className="carousel-container">
-              <button onClick={prevSkill} className="carousel-btn carousel-btn-prev" disabled={currentSkillIndex === 0}>
-                <ArrowRight size={20} style={{ transform: 'rotate(180deg)' }} />
-              </button>
-              
-              <div className="carousel-track">
-                <div className="skills-grid-carousel">
-                  {displayedSkills.map((skill, i) => (
-                    <div
-                      key={`${currentSkillIndex}-${i}`}
-                      className="skill-card"
-                      style={{ 
-                        animation: 'fadeInScale 0.5s ease-out forwards',
-                        animationDelay: `${i * 100}ms`
-                      }}
-                    >
-                      <div className="skill-icon" style={{ background: skill.color }}>
-                        {skill.icon}
-                      </div>
-                      <h3 className="skill-name">{skill.name}</h3>
-                      <ul className="skill-items">
-                        {skill.items.map((item, j) => (
-                          <li key={j} className="skill-item">
-                            <span className="skill-bullet" style={{ background: skill.color }}></span>
-                            {item}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+          <div className={`skills-grid fade-in-section ${isVisible['skills-header'] ? 'visible' : ''}`} id="skills-grid">
+            {skillCategories.map(cat => (
+              <div key={cat.key} className="skill-category-card">
+                <div className="skill-cat-header">
+                  <span className="skill-cat-icon" style={{ background: cat.color }}>{cat.icon}</span>
+                  <h3 className="skill-cat-name">{cat.label}</h3>
+                </div>
+                <div className="skill-tags">
+                  {skills.filter(s => s.category === cat.key).map(s => (
+                    <span key={s.label} className="skill-tag">{s.label}</span>
                   ))}
                 </div>
               </div>
-              
-              <button onClick={nextSkill} className="carousel-btn carousel-btn-next" disabled={currentSkillIndex + 4 >= skills.length}>
-                <ArrowRight size={20} />
-              </button>
-            </div>
-            
-            <div className="carousel-dots">
-              {Array.from({ length: totalPages }, (_, i) => (
-                <button
-                  key={i}
-                  onClick={() => goToSkill(i * 4)}
-                  className={`carousel-dot ${currentPage === i ? 'active' : ''}`}
-                />
-              ))}
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Projects Section */}
+      {/* Projects */}
       <section id="projects" className="projects-section">
         <div className="container">
           <div className="section-header fade-in-section" id="projects-header">
-            <h2 className="section-title">Featured Projects</h2>
-            <p className="section-subtitle">
-              Showcasing real-world applications and academic achievements
-            </p>
+            <h2 className={`section-title ${isVisible['projects-header'] ? 'visible' : ''}`}>Projects</h2>
+            <p className="section-subtitle">Things I've built</p>
           </div>
-
           <div className="projects-grid">
             {projects.map((project, i) => (
               <div
                 key={i}
-                className={`project-card fade-in-section ${isVisible['projects-header'] ? 'visible' : ''}`}
-                style={{ transitionDelay: `${i * 200}ms` }}
+                className={`project-card fade-in-section ${isVisible[`project-${i}`] ? 'visible' : ''}`}
                 id={`project-${i}`}
+                style={{ transitionDelay: `${i * 150}ms` }}
               >
-                {project.link ? (
-                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="project-link-wrapper">
-                    <div className="project-header" style={{ background: project.gradient }}></div>
-                    
-                    <div className="project-content">
-                      <div className="project-title-row">
-                        <div>
-                          <h3 className="project-title">{project.title}</h3>
-                          <span className="project-role" style={{ 
-                            background: project.gradient,
-                            WebkitBackgroundClip: 'text',
-                            WebkitTextFillColor: 'transparent',
-                            backgroundClip: 'text'
-                          }}>
-                            {project.role}
-                          </span>
-                        </div>
-                        <ExternalLink size={20} className="project-link-icon" />
-                      </div>
-
-                      <p className="project-description">{project.desc}</p>
-
-                      <div className="project-tech">
-                        {project.tech.map((tech, j) => (
-                          <span key={j} className="tech-tag">{tech}</span>
-                        ))}
-                      </div>
+                <div className="project-accent" style={{ background: project.gradient }}></div>
+                <div className="project-content">
+                  <div className="project-title-row">
+                    <div>
+                      <h3 className="project-title">{project.title}</h3>
+                      <span className="project-role" style={{
+                        background: project.gradient,
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        backgroundClip: 'text'
+                      }}>{project.role}</span>
                     </div>
-
-                    <div className="project-hover-overlay" style={{ background: project.gradient }}></div>
-                  </a>
-                ) : (
-                  <>
-                    <div className="project-header" style={{ background: project.gradient }}></div>
-                    
-                    <div className="project-content">
-                      <div className="project-title-row">
-                        <div>
-                          <h3 className="project-title">{project.title}</h3>
-                          <span className="project-role" style={{ 
-                            background: project.gradient,
-                            WebkitBackgroundClip: 'text',
-                            WebkitTextFillColor: 'transparent',
-                            backgroundClip: 'text'
-                          }}>
-                            {project.role}
-                          </span>
-                        </div>
-                      </div>
-
-                      <p className="project-description">{project.desc}</p>
-
-                      <div className="project-tech">
-                        {project.tech.map((tech, j) => (
-                          <span key={j} className="tech-tag">{tech}</span>
-                        ))}
-                      </div>
+                    <div className="project-links">
+                      {project.github && (
+                        <a href={project.github} target="_blank" rel="noopener noreferrer" className="project-icon-link" aria-label="View source on GitHub">
+                          <Github size={18} />
+                        </a>
+                      )}
+                      {project.link && project.link !== project.github && (
+                        <a href={project.link} target="_blank" rel="noopener noreferrer" className="project-icon-link" aria-label="View live demo">
+                          <ExternalLink size={18} />
+                        </a>
+                      )}
                     </div>
-
-                    <div className="project-hover-overlay" style={{ background: project.gradient }}></div>
-                  </>
-                )}
+                  </div>
+                  <p className="project-description">{project.desc}</p>
+                  <div className="project-tech">
+                    {project.tech.map((tech, j) => (
+                      <span key={j} className="tech-tag">{tech}</span>
+                    ))}
+                  </div>
+                </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact */}
+      <section id="contact" className="contact-section">
+        <div className="container">
+          <div className="fade-in-section" id="contact-header">
+            <div className={`contact-card ${isVisible['contact-header'] ? 'visible' : ''}`}>
+              <h2 className="section-title">Let's Work Together</h2>
+              <p className="contact-subtitle">
+                I'm currently open to internship and entry-level opportunities. If you have a role or project in mind, feel free to reach out.
+              </p>
+              <div className="contact-actions">
+                <a href="mailto:clarence.felicilda007@gmail.com" className="btn btn-primary">
+                  <Mail size={18} /> Send an Email
+                </a>
+                <a href="https://linkedin.com/in/clarence-felicilda-13667728a" target="_blank" rel="noreferrer" className="btn btn-secondary">
+                  <Linkedin size={18} /> Connect on LinkedIn
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -380,9 +319,7 @@ const Portfolio = () => {
       {/* Footer */}
       <footer className="footer">
         <div className="container">
-          <p className="footer-text">
-            © 2026 Clarence F. Felicilda. Crafted with passion and code.
-          </p>
+          <p className="footer-text">© 2026 Clarence F. Felicilda</p>
         </div>
       </footer>
     </div>
