@@ -241,7 +241,7 @@ body {
   .profile-border { width: 360px; height: 360px; }
 }
 
-.profile-image { width: 100%; height: 100%; object-fit: cover; display: block; }
+.profile-image { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
 
 .availability-badge {
   position: absolute;
