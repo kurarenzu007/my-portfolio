@@ -78,7 +78,7 @@ const Portfolio = () => {
       title: 'Animal Adoption Platform',
       role: 'Personal Project',
       tech: ['React', 'Vite', 'Bootstrap'],
-      desc: 'A responsive web platform connecting shelter animals with potential adopters. Built a mobile-first UI with filtering, animal profiles, and smooth page transitions.',
+      desc: 'A responsive web platform connecting shelter animals with potential adopters. Architected a mobile-first UI with dynamic filtering, animal profile pages, and smooth page transitions. Deployed live on GitHub Pages.',
       gradient: 'linear-gradient(to right, #10b981, #0ea5e9)',
       link: 'https://kurarenzu007.github.io/AnimalAdoption/',
       github: null,
@@ -87,7 +87,7 @@ const Portfolio = () => {
       title: 'Auto Parts Inventory System',
       role: 'Thesis Project',
       tech: ['React', 'Node.js', 'MySQL'],
-      desc: 'Full-stack inventory management system with real-time stock tracking, low-stock alerts, and transaction history. Implemented JWT authentication and role-based access control for admin and staff roles.',
+      desc: 'Full-stack inventory management system with a multi-role database schema supporting admin and staff access. Built a REST API with Express handling stock tracking, low-stock alerts, and transaction history. Secured with JWT authentication and deployed to production at tjcsims.com.',
       gradient: 'linear-gradient(to right, #3b82f6, #06b6d4)',
       link: 'https://tjcsims.com',
       github: null,
@@ -96,7 +96,7 @@ const Portfolio = () => {
       title: 'Apartment Management System',
       role: 'Personal Project',
       tech: ['React', 'Vite', 'React Router', 'jsPDF'],
-      desc: 'Full-featured property management app with tenant registration, unit tracking, rent collection, maintenance requests, and complaint handling. Includes a role-based login system for admin and tenants, plus PDF report generation.',
+      desc: 'Full-featured property management app with a multi-role schema separating admin and tenant permissions. Covers tenant registration, unit tracking, rent collection, maintenance requests, and complaint handling. Includes PDF report generation and is deployed on Vercel.',
       gradient: 'linear-gradient(to right, #f59e0b, #ef4444)',
       link: 'https://github.com/kurarenzu007/jjj-apartment',
       github: 'https://github.com/kurarenzu007/jjj-apartment',
@@ -105,7 +105,7 @@ const Portfolio = () => {
       title: 'Clinic Appointment System',
       role: 'Academic Project',
       tech: ['React', 'Node.js', 'Express', 'MySQL'],
-      desc: 'Patient scheduling system that replaced a manual paper-based process. Supports appointment booking, doctor availability management, and patient records — reducing scheduling conflicts significantly.',
+      desc: 'Patient scheduling system that replaced a manual paper-based process. Designed a relational schema for doctors, patients, and appointments. Built an Express API handling availability management, booking logic, and patient records — significantly reducing scheduling conflicts.',
       gradient: 'linear-gradient(to right, #a855f7, #ec4899)',
       link: 'https://github.com/kurarenzu007/clinic-appointment',
       github: 'https://github.com/kurarenzu007/clinic-appointment',
@@ -210,7 +210,7 @@ const Portfolio = () => {
                 I'm a BSIT graduate from Cavite State University specializing in full-stack web development. I've built projects ranging from inventory systems to patient scheduling platforms, working across the full stack with React, Node.js, and MySQL — with a focus on clean relational database design and production-ready deployments.
               </p>
               <p className="about-text">
-                I'm comfortable taking a feature from database schema to deployed UI. I'm looking for an entry-level or internship role where I can work on real products, write clean code, and learn from experienced engineers.
+                I'm comfortable taking a feature from database schema to deployed UI — and I understand the network and hardware infrastructure underneath it. I'm looking for a role where I can work on real products, write clean code, and grow alongside experienced engineers.
               </p>
               <div className="about-stats">
                 <div className="stat">
@@ -341,7 +341,7 @@ const Portfolio = () => {
             <div className="contact-card">
               <h2 className="section-title">Let's Work Together</h2>
               <p className="contact-subtitle">
-                I'm currently open to internship and entry-level opportunities. If you have a role or project in mind, feel free to reach out.
+                I'm currently open to full-stack developer roles and collaborative projects. If you have something in mind, feel free to reach out.
               </p>
               <div className="contact-actions">
                 <a href="mailto:clarence.felicilda007@gmail.com" className="btn btn-primary">
