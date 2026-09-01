@@ -303,7 +303,7 @@ body {
   margin-bottom: 20px;
 }
 
-.light .hero-subtitle { color: #64748b; }
+.light .hero-subtitle { color: #475569; }
 .dark  .hero-subtitle { color: #94a3b8; }
 
 .hero-description {
@@ -371,7 +371,7 @@ body {
   animation: scrollDot 1.5s ease-in-out infinite;
 }
 
-.light .scroll-dot { background: #94a3b8; }
+.light .scroll-dot { background: #64748b; }
 .dark  .scroll-dot { background: #475569; }
 
 /* ── About ── */
@@ -417,7 +417,7 @@ body {
   font-weight: 500;
 }
 
-.light .stat-label { color: #64748b; }
+.light .stat-label { color: #475569; }
 .dark  .stat-label { color: #94a3b8; }
 
 /* ── Skills ── */
@@ -441,7 +441,7 @@ body {
 
 .section-subtitle { font-size: 17px; }
 
-.light .section-subtitle { color: #64748b; }
+.light .section-subtitle { color: #475569; }
 .dark  .section-subtitle { color: #94a3b8; }
 
 .skills-grid {
@@ -645,7 +645,7 @@ body {
   font-size: 14px;
 }
 
-.light .footer-text { color: #94a3b8; }
+.light .footer-text { color: #64748b; }
 .dark  .footer-text { color: #475569; }
 
 /* ── Animations ── */

@@ -123,3 +123,21 @@ Use the WebAIM Contrast Checker and test
 #dbeafe gradient). If either fails AA at the font sizes you're using, darken them slightly (e.g., 
 #64748b → 
 #475569).
+
+11. Updating Your Description
+
+Remove the Student Tag: Drop phrases like "4th-year BSIT student" from your hero section so you immediately present yourself as a deploy-ready developer.
+
+Adopt a Professional Headline: Frame your introduction around your core engineering stack and capabilities:
+
+"Full-Stack Software Developer | BSIT Graduate specializing in React, Node.js, and Relational Database Architecture."
+
+Highlight Your Workflow: Add a brief line emphasizing your focus on clean system architecture, relational database design (PostgreSQL/Supabase), and efficient production workflows.
+
+High-Impact Portfolio Recommendations
+
+Elevate Project Case Studies: Don't just list technologies for your Student Clearance System, jjj-apartment, and Auto Parts thesis. Write mini-breakdowns detailing your multi-role database schemas, API routing, and live production deployments on Vercel.
+
+Reposition Your OJT Experience: For your 486-hour OJT at STI College, push software testing, system troubleshooting, and network configurations to the top of the list so it directly supports your developer narrative.
+
+Lock in the Polish: Make sure your compressed WebP avatar, custom initials favicon, persisted dark mode toggle, and proper SEO metadata in index.html are fully pushed to your live GitHub Pages link so the site runs flawlessly.

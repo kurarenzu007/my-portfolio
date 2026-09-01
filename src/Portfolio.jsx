@@ -3,13 +3,18 @@ import { Code2, Server, Database, PenTool, Mail, Github, Linkedin, ExternalLink,
 import imgProfile from './assets/clarence_f.jpg';
 
 const Portfolio = () => {
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(() => {
+    const saved = localStorage.getItem('theme');
+    if (saved) return saved === 'dark';
+    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+  });
   const [isVisible, setIsVisible] = useState({});
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
   }, [isDark]);
 
   useEffect(() => {
@@ -208,7 +213,7 @@ const Portfolio = () => {
               </p>
               <div className="about-stats">
                 <div className="stat">
-                  <span className="stat-number gradient-text">3+</span>
+                  <span className="stat-number gradient-text">4</span>
                   <span className="stat-label">Projects Shipped</span>
                 </div>
                 <div className="stat">
