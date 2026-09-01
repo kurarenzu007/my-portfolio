@@ -44,6 +44,7 @@ const Portfolio = () => {
   const navLinks = [
     { label: 'About', href: '#about' },
     { label: 'Skills', href: '#skills' },
+    { label: 'Experience', href: '#experience' },
     { label: 'Projects', href: '#projects' },
     { label: 'Contact', href: '#contact' },
   ];
@@ -171,9 +172,9 @@ const Portfolio = () => {
                 Clarence F.<br />
                 <span className="gradient-text">Felicilda</span>
               </h1>
-              <p className="hero-subtitle">Full-Stack Developer · 4th Year BSIT · Cavite State University</p>
+              <p className="hero-subtitle">Full-Stack Software Developer · BSIT Graduate · Cavite State University</p>
               <p className="hero-description">
-                I build web applications end-to-end — from database design to UI. Currently finishing my degree and actively looking for opportunities where I can contribute and keep growing as a developer.
+                Full-Stack Software Developer specializing in React, Node.js, and Relational Database Architecture. I build web applications end-to-end — from schema design to production deployment — with a focus on clean system architecture and efficient workflows.
               </p>
               <div className="hero-buttons">
                 <a href="#projects" className="btn btn-primary">
@@ -206,7 +207,7 @@ const Portfolio = () => {
             <div className="about-card">
               <h2 className="section-title">About Me</h2>
               <p className="about-text">
-                I'm a 4th year Bachelor of Science in Information Technology student at Cavite State University, specializing in full-stack web development. I've built projects ranging from inventory systems to patient scheduling platforms, working across the full stack with React, Node.js, and MySQL.
+                I'm a BSIT graduate from Cavite State University specializing in full-stack web development. I've built projects ranging from inventory systems to patient scheduling platforms, working across the full stack with React, Node.js, and MySQL — with a focus on clean relational database design and production-ready deployments.
               </p>
               <p className="about-text">
                 I'm comfortable taking a feature from database schema to deployed UI. I'm looking for an entry-level or internship role where I can work on real products, write clean code, and learn from experienced engineers.
@@ -251,6 +252,31 @@ const Portfolio = () => {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Experience */}
+      <section id="experience" className="experience-section">
+        <div className="container">
+          <div className="section-header fade-in-section" id="experience-header">
+            <h2 className={`section-title ${isVisible['experience-header'] ? 'visible' : ''}`}>Experience</h2>
+            <p className="section-subtitle">Where I've applied my skills</p>
+          </div>
+          <div className={`experience-card fade-in-section ${isVisible['experience-card'] ? 'visible' : ''}`} id="experience-card">
+            <div className="experience-header-row">
+              <div>
+                <h3 className="experience-title">IT Support Intern</h3>
+                <p className="experience-company">STI College · On-the-Job Training · 486 hours</p>
+              </div>
+              <span className="experience-badge">OJT</span>
+            </div>
+            <ul className="experience-list">
+              <li><strong>Network Configuration & Hardware Setup</strong> — Configured network settings, managed local connectivity, and assembled or troubleshot hardware configurations across workstation setups.</li>
+              <li><strong>System Troubleshooting & Diagnostics</strong> — Diagnosed technical issues systematically, monitored system environments via CCTV, and resolved software and hardware locks across multiple workstations.</li>
+              <li><strong>Software Testing & Proctoring</strong> — Verified software stability during testing phases and maintained digital environments during technical examinations to ensure academic integrity.</li>
+            </ul>
+            <p className="experience-note">These hands-on infrastructure tasks reinforce my development background — I understand both the code and the physical network infrastructure it runs on.</p>
           </div>
         </div>
       </section>
