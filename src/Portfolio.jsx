@@ -94,7 +94,7 @@ const Portfolio = () => {
     },
     {
       title: 'Auto Parts Inventory System',
-      role: 'Thesis Project',
+      role: 'Capstone Project',
       tech: ['React', 'Node.js', 'MySQL'],
       desc: 'Full-stack inventory management system with a multi-role database schema supporting admin and staff access. Built a REST API with Express handling stock tracking, low-stock alerts, and transaction history. Secured with JWT authentication and deployed to production at tjcsims.com.',
       gradient: 'linear-gradient(to right, #3b82f6, #06b6d4)',
@@ -103,11 +103,11 @@ const Portfolio = () => {
     },
     {
       title: 'Apartment Management System',
-      role: 'Personal Project',
+      role: 'Client-Based Project',
       tech: ['React', 'Vite', 'React Router', 'jsPDF'],
-      desc: 'Full-featured property management app with a multi-role schema separating admin and tenant permissions. Covers tenant registration, unit tracking, rent collection, maintenance requests, and complaint handling. Includes PDF report generation and is deployed on Vercel.',
+      desc: 'Commissioned full-featured property management app built as a thesis for a real client. Multi-role schema separating admin and tenant permissions covers tenant registration, unit tracking, rent collection, maintenance requests, and complaint handling. Includes PDF report generation and is deployed on Vercel.',
       gradient: 'linear-gradient(to right, #f59e0b, #ef4444)',
-      link: 'https://github.com/kurarenzu007/jjj-apartment',
+      link: 'https://jjj-apartment.vercel.app',
       github: 'https://github.com/kurarenzu007/jjj-apartment',
     },
     {
