@@ -75,6 +75,15 @@ const Portfolio = () => {
 
   const projects = [
     {
+      title: 'Student Clearance Management System',
+      role: 'OJT Project',
+      tech: ['React 19', 'Vite', 'Supabase', 'PostgreSQL', 'Recharts'],
+      desc: 'Full-stack clearance platform for STI that digitizes the entire student clearance workflow — no paper, no queues. Multi-role schema (students, teachers, admins) with Supabase RLS enforcing per-role data access. Features real-time approvals, bulk actions, PDF certificate export, live analytics dashboard with charts, and a clearance period lock toggle persisted via system_settings. Deployed to production on Vercel.',
+      gradient: 'linear-gradient(to right, #003DA5, #FFD100)',
+      link: 'https://sti-clearance.vercel.app/',
+      github: 'https://github.com/kurarenzu007/clearance-management',
+    },
+    {
       title: 'Animal Adoption Platform',
       role: 'Personal Project',
       tech: ['React', 'Vite', 'Bootstrap'],
@@ -214,7 +223,7 @@ const Portfolio = () => {
               </p>
               <div className="about-stats">
                 <div className="stat">
-                  <span className="stat-number gradient-text">4</span>
+                  <span className="stat-number gradient-text">5</span>
                   <span className="stat-label">Projects Shipped</span>
                 </div>
                 <div className="stat">
